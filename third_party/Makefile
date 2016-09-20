@@ -33,5 +33,5 @@ eigen:
 	hg clone https://bitbucket.org/eigen/eigen ;    \
 	cd ./eigen ;                                    \
 	hg up 3.3-beta2 ;                               \
-	mkdir -p ../../opt/include/Eigen                \
+	mkdir -p ../../opt/include/Eigen ;              \
 	cp -r ./Eigen ../../opt/include/Eigen
