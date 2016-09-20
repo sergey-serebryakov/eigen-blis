@@ -50,56 +50,40 @@ There are multiple ways how BLIS can be configured in [multithreading mode](http
  ```
  
 Once it is done, go to buid directory and run binaries. The programm will iterate over matrix dimensions in the range 200-100000 with step 200 and will multiply squared matrices several times to measure the average time and achieved GFLOPs. The experiment is written in such a way that a matrix multiplication expression will be translated by Eigen to exactly one sgemm call (C = A * B + C) (see Eigen [documentation](http://eigen.tuxfamily.org/dox/TopicWritingEfficientProductExpression.html) how to write efficient matrix expressions). The output is a two column table with first column being dimension and the second column being average GFLOPs.
-
-If you run it on multi-CPU server, do not forget to bind the executable to one cpu with either **taskset** or **numactl** utilities. For example, to run the application on the first CPU on a multi-CPU machine, following commands may be used (taskset here is for a 15-core CPU):
-  ```shell
- taskset -c 0-14 ./blis
- numactl --cpunodebind=0 --membind=0 ./blis
- ```
- You may want to try other CPUs since CPU 0 is used by OS.
  
 ### Experimental results
 
-In this section I provide several results I got on three different servers (see TODO section in the end for possible comments to these resutls). The servers were basically a multi-CPU machine. In all experiments BLIS is version 0.1.8.
+In this section I provide several results I got for three different CPUs. In all experiments BLIS is version 0.1.8.
 
-#### 2-CPU server: 10-core E5-2660 v2 @ 2.2 (Ivy Bridge, theorethical peak is 352 GFLOPs for single precision numbers), GCC: 5.2.0, OS: Ubuntu 14.04, BLIS configured with Sandy Bridge kernel.
+#### 10-core E5-2660 v2 @ 2.2 (Ivy Bridge, theorethical peak is 352 GFLOPs for single precision numbers), GCC: 5.2.0, OS: Ubuntu 14.04, BLIS configured with Sandy Bridge kernel.
  
    ```shell
  export OMP_NUM_THREADS=10
  export BLIS_JC_NT=2
  export BLIS_IC_NT=5
- numactl --cpunodebind=1 --membind=1 ./blis
- numactl --cpunodebind=1 --membind=1 ./eigen_blis
- numactl --cpunodebind=1 --membind=1 ./eigen
  ```
  
-![sgemm E5-2660 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32di11TzJsdzFoZzQ)
+![sgemm E5-2660 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32RTdMV1QyU3VIcU0)
 
-#### 4-CPU server: 15-core E7-4890 v2 @ 2.8 (Ivy Bridge, theorethical peak is 672 GFLOPs for single precision numbers), GCC: 4.8.5, OS: Red Hat 7.2, BLIS configured with Sandy Bridge kernel.
+#### 15-core E7-4890 v2 @ 2.8 (Ivy Bridge, theorethical peak is 672 GFLOPs for single precision numbers), GCC: 4.8.5, OS: Red Hat 7.2, BLIS configured with Sandy Bridge kernel.
  
  ```shell
  export OMP_NUM_THREADS=15
  export BLIS_JC_NT=3
  export BLIS_IC_NT=5
- numactl --cpunodebind=2 --membind=2 ./blis
- numactl --cpunodebind=2 --membind=2 ./eigen_blis
- numactl --cpunodebind=2 --membind=2 ./eigen
  ```
  
-![sgemm E7-4890 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
+![sgemm E7-4890 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32RTdMV1QyU3VIcU0)
 
-#### 4-CPU server: 18-core E7-8890 v3 @ 2.5 (Haswell, theorethical peak is 1440 GFLOPs for single precision numbers), GCC: 4.8.2, OS: Red Hat 7.0, BLIS configured with Haswell kernel.
+#### 18-core E7-8890 v3 @ 2.5 (Haswell, theorethical peak is 1440 GFLOPs for single precision numbers), GCC: 4.8.2, OS: Red Hat 7.0, BLIS configured with Haswell kernel.
 
   ```shell
  export OMP_NUM_THREADS=18
  export BLIS_JC_NT=3
  export BLIS_IC_NT=6
- numactl --cpunodebind=2 --membind=2 ./blis
- numactl --cpunodebind=2 --membind=2 ./eigen_blis
- numactl --cpunodebind=2 --membind=2 ./eigen
  ```
  
-![sgemm E7-8890 v3](https://docs.google.com/uc?id=0B9MJrpMhxr32NkF3bkgtT3NTMVU)
+![sgemm E7-8890 v3](https://docs.google.com/uc?id=0B9MJrpMhxr32RTdMV1QyU3VIcU0)
 
 ### TODO
-Should AVX (FMA) be explicitly specified with GCC (see [here](http://eigen.tuxfamily.org/index.php?title=3.3))?
+
