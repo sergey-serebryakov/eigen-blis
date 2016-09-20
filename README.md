@@ -61,10 +61,16 @@ If you run examples on multi-CPU server, do not forget to bind the app to one cp
  
 ### Experimental results
  
-##### CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
+##### 1. CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
 The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical peak for single precision floating point numebrs is 672 GFLOPs). The example of a command used to run the experiments:
   ```shell
+ export OMP_NUM_THREADS=15
+ export BLIS_JC_NT=3
+ export BLIS_IC_NT=5
+ nuamctl --cpunodebind=2 --membind=2 ./blis
+ nuamctl --cpunodebind=2 --membind=2 ./eigen_blis
  nuamctl --cpunodebind=2 --membind=2 ./eigen
  ```
  The resuts are:
-![sgemm](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
+ 
+![sgemm E7-4890 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
