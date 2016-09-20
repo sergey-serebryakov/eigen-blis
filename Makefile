@@ -3,7 +3,7 @@ SRCDIR     := ./src
 OPTDIR     := ./opt
 
 LDFLAGS    := -L${OPTDIR}/lib -lblis
-CXXFLAGS   := -I${OPTDIR}/include -I$(SRCDIR) -std=c++11 -fopenmp -O3 -ffast-math
+CXXFLAGS   := -I${OPTDIR}/include -I$(SRCDIR) -std=c++11 -fopenmp -O3 -ffast-math -march=native
 
 SOURCES    := $(shell find ${SRCDIR} -name *.cpp)
 OBJECTS    := $(patsubst ${SRCDIR}/%.cpp, ${BUILDDIR}/src/%.o, ${SOURCES})
