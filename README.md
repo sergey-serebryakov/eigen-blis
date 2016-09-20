@@ -61,7 +61,7 @@ If you run it on multi-CPU server, do not forget to bind the executable to one c
 ### Experimental results
 
 In this section I provide several results I got on three different servers (see TODO section in the end for possible comments to these resutls). The servers were basically a multi-CPU machine. In all experiments BLIS is version 0.1.8.
- 1. 2-CPU server: E5-2660 v2 @ 2.2 (Ivy Bridge, theorethical peak is 352 GFLOPs for single precision numbers), GCC: 5.2.0, OS: Ubuntu 14.04, BLIS configured with Sandy Bridge kernel.
+ 1. 2-CPU server: 10-core E5-2660 v2 @ 2.2 (Ivy Bridge, theorethical peak is 352 GFLOPs for single precision numbers), GCC: 5.2.0, OS: Ubuntu 14.04, BLIS configured with Sandy Bridge kernel.
  
    ```shell
  export OMP_NUM_THREADS=10
