@@ -62,7 +62,7 @@ If you run examples on multi-CPU server, do not forget to bind the app to one cp
 ### Experimental results
  
 ##### 1. CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
-The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical peak for single precision floating point numebrs is 672 GFLOPs). The following script was used to run experiments:
+The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical peak for single precision floating point numebrs is 672 GFLOPs). BLIS was configured with OpenMP and SandyBridge configuration. The following script was used to run experiments:
   ```shell
  export OMP_NUM_THREADS=15
  export BLIS_JC_NT=3
