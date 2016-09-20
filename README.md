@@ -1,4 +1,4 @@
-# Accelerating Eigen linear algebra library with BLIS (BLAS) on CPUs
+# Eigen linear algebra library with BLIS (BLAS) on CPUs: are there any performance benefits?
 
 ### Introduction
 [Eigen](http://eigen.tuxfamily.org/) is a C++ template-based linear algebra library. In order to use it, no compilation is requried: just get the latest version and specify include paths for your project. Eigen uses a number of optimization techniques to make things fast: parallelization with OpenMP, advanced vector extensions (AVX), smart expression templates and many others.
@@ -7,7 +7,8 @@ Linear algebra is an important component of many HPC applications (for instance,
 
 Eigen historically supported only Intel's MKL library to delegate some of its computations to a highly optimzied ans specialzied for a particular hardware code. However, starting from version 3.3 Eigen can delegate these computations to any library implementing BLAS API (see [this](http://eigen.tuxfamily.org/dox-devel/TopicUsingBlasLapack.html) page for details)).
 
-There are many libraries providing BLAS interface. From my experience, I found [BLIS](https://github.com/flame/blis) to be very convinient and fast. This project aims at demonstrating that a particular operation - general matrix-matrix multiplication (xgemm) - can be accelerated by allowing Eigen to delegate it to a BLAS library (BLIS version 0.1.8 in this particular case).
+There are many libraries providing BLAS interface. From my experience, I found [BLIS](https://github.com/flame/blis) to be very convinient and fast. I wanted to see if there would be any performance benefits from integrating Eigen and BLAS library in terms of simple test - single general matrix matrix multiplication (xgemm). 
+
 ### Using Eigen with BLAS library
 In order to take advantage of a hardware-optimized linear algebra library, Eigen requires that a macro EIGEN_USE_BLAS is defined before including Eigen headers
 ```c
@@ -63,7 +64,7 @@ In this section I provide several results I got for three different CPUs. In all
  export BLIS_IC_NT=5
  ```
  
-![sgemm E5-2660 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32RTdMV1QyU3VIcU0)
+![sgemm E5-2660 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32eDZXZW9PeHZucVU)
 
 #### 15-core E7-4890 v2 @ 2.8 (Ivy Bridge, theorethical peak is 672 GFLOPs for single precision numbers), GCC: 4.8.5, OS: Red Hat 7.2, BLIS configured with Sandy Bridge kernel.
  
@@ -83,7 +84,7 @@ In this section I provide several results I got for three different CPUs. In all
  export BLIS_IC_NT=6
  ```
  
-![sgemm E7-8890 v3](https://docs.google.com/uc?id=0B9MJrpMhxr32RTdMV1QyU3VIcU0)
+![sgemm E7-8890 v3](https://docs.google.com/uc?id=0B9MJrpMhxr32S1RqaWhwYUgtczA)
 
 ### TODO
 
