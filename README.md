@@ -1,7 +1,7 @@
 # Accelerating Eigen linear algebra library with BLIS (BLAS) on CPUs
 
 ### Introduction
-[Eigen](http://eigen.tuxfamily.org/) is a C++ template-based linear algebra library. In order to use it, no compilation is requried: just check out the latest version and specify include paths for your project. Eigen uses a number of optimization techniques to make things fast: parallelization with OpenMP, advanced vector extensions (AVX), smart expression templates and many others.
+[Eigen](http://eigen.tuxfamily.org/) is a C++ template-based linear algebra library. In order to use it, no compilation is requried: just get the latest version and specify include paths for your project. Eigen uses a number of optimization techniques to make things fast: parallelization with OpenMP, advanced vector extensions (AVX), smart expression templates and many others.
 
 Linear algebra is an important component of many HPC applications (for instance, the process of training deep neural networks may end up multiplying matrices up to 90% of entire training time). There is a de-facto standard for low-level vector-matrix operations called [BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms). Usually, libraries implementing BLAS interface are highly optimized for various types of hardware and need to be compiled and built on target machines.
 
@@ -16,13 +16,13 @@ In order to take advantage of a hardware-optimized linear algebra library, Eigen
 ```
 and a program is linked against corresponding library. That's basically all!
 ### Running examples in this project
-Get this project and create initial configuration:
+Get this project and create initial configuration (required to compile BLIS):
 ```shell
 git clone https://github.com/sergey-serebryakov/eigen-blis.git
 cd ./eigen-blis
 cp ./config.mk.template ./config.mk
 ```
-Previous versions of BLIS require that a CPU configuration is provided (go [here](https://github.com/flame/blis/tree/0.1.8/config) to see which configurations are available). Edit the BLIS_CONFNAME variable in config .mk file to specify a desired configuration. It is very important to select a correct configuration at this step. Once configuration is specified, it is time to compile BLIS and get Eigen (at this step you may need to adjust your environmental settings (proxy settings) or install additional dependencies (mercurial)):
+Previous versions of BLIS require that a CPU configuration is provided (go [here](https://github.com/flame/blis/tree/0.1.8/config) to see which configurations are available). Edit the BLIS_CONFNAME variable in config .mk file to specify a desired configuration. It is very important to select correct configuration at this step. Once configuration is specified, it is time to compile BLIS and get Eigen (before this step you may need to adjust your environmental settings (proxy settings) or install additional dependencies (mercurial - to get Eigen)):
 ```shell
 cd ./third_party
 make eigen
@@ -49,9 +49,9 @@ There are multiple ways how BLIS can be configured in [multithreading mode](http
  export BLIS_IC_NT=5
  ```
  
-Once it is done, go to buid directory and run binaries. Each file will iterate over squared matrix dimensions in the range 200 - 10000 with step 200 and will multiply matrices that will be translated by Eigen to exactly one gemm call (C = A * B + C) (see Eigen [documentation](http://eigen.tuxfamily.org/dox/TopicWritingEfficientProductExpression.html) how to write efficient matrix expressions).
+Once it is done, go to buid directory and run binaries. The programm will iterate over matrix dimensions in the range 200-100000 with step 200 and will multiply squared matrices several times to measure the average time and achieved GFLOPs. The experiment is written in such a way that a matrix multiplication expression will be translated by Eigen to exactly one sgemm call (C = A * B + C) (see Eigen [documentation](http://eigen.tuxfamily.org/dox/TopicWritingEfficientProductExpression.html) how to write efficient matrix expressions). The output is a two column table with first column being dimension and the second column being average GFLOPs.
 
-If you run examples on multi-CPU server, do not forget to bind the app to one cpu with either **taskset** or **numactl** utilities. For example, to run the application on the first CPU on a multi-CPU machine, following commands may be used (taskset here is for a 15-core CPU):
+If you run it on multi-CPU server, do not forget to bind the executable to one cpu with either **taskset** or **numactl** utilities. For example, to run the application on the first CPU on a multi-CPU machine, following commands may be used (taskset here is for a 15-core CPU):
   ```shell
  taskset -c 0-14 ./blis
  numactl --cpunodebind=0 --membind=0 ./blis
@@ -59,7 +59,12 @@ If you run examples on multi-CPU server, do not forget to bind the app to one cp
  You may want to try other CPUs since CPU 0 is used by OS.
  
 ### Experimental results
- 
+
+In this section I provide several results I got on three different servers (see TODO section in the end for possible comments to these resutls). The servers were basically a multi-CPU machine with following CPUs and environments:
+ 1 CPU: E5-2660 v2 @ 2.2 (Ivy Bridge), GCC: 5.2.0, OS: Ubuntu 14.04 (2-CPU machine)
+ 2 CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2 (4-CPU machine)
+ 3 CPU: E7-8890 v3 @ 2.5 (Haswell), GCC: 4.8.2, OS: Red Hat 7.0 (4-CPU machine)
+
 ##### 1. CPU: E5-2660 v2 @ 2.2 (Ivy Bridge), GCC: 5.2.0, OS: Ubuntu 14.04
 The machine is a server with 2 Intel's E5-2660 v2 @ 2.2 processors (theoretical peak for single precision floating point numbers is 352 GFLOPs (one cpu)). BLIS was configured with OpenMP and SandyBridge kernel. The following script was used to run experiments:
   ```shell
