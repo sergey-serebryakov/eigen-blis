@@ -71,5 +71,4 @@ The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical 
  nuamctl --cpunodebind=2 --membind=2 ./eigen
  ```
  The resuts are:
- 
 ![sgemm E7-4890 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
