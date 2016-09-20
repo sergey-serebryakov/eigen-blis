@@ -44,7 +44,7 @@ Before running examples, an environment must be properly set. To configure Eigen
  ```shell
  export OMP_NUM_THREADS=15
  ```
-There are multiple ways how BLIS can be configured in [multithreading mode](https://github.com/flame/blis/wiki/Multithreading). In most of my experiments, I configure only BLIS_JC_NT and BLISIC_NT variables (this example is for the same 15-core processor):
+There are multiple ways how BLIS can be configured in [multithreading mode](https://github.com/flame/blis/wiki/Multithreading). In most of my experiments, I configure only BLIS_JC_NT and BLIS_IC_NT variables (this example is for the same 15-core processor):
  ```shell
  export BLIS_JC_NT=3
  export BLIS_IC_NT=5
