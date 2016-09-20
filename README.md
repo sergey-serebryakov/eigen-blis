@@ -74,18 +74,9 @@ In this section I provide several results I got on three different servers (see 
  
 ![sgemm E5-2660 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32di11TzJsdzFoZzQ)
 
- 2. 4-CPU server: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
- 3. 4-CPU server: E7-8890 v3 @ 2.5 (Haswell), GCC: 4.8.2, OS: Red Hat 7.0
-
-##### 1. CPU: E5-2660 v2 @ 2.2 (Ivy Bridge), GCC: 5.2.0, OS: Ubuntu 14.04
-The machine is a server with 2 Intel's E5-2660 v2 @ 2.2 processors (theoretical peak for single precision floating point numbers is 352 GFLOPs (one cpu)). BLIS was configured with OpenMP and SandyBridge kernel. The following script was used to run experiments:
-
-
+ 2. 4-CPU server: 15-core E7-4890 v2 @ 2.8 (Ivy Bridge, theorethical peak is 672 GFLOPs for single precision numbers), GCC: 4.8.5, OS: Red Hat 7.2, BLIS configured with Sandy Bridge kernel.
  
-##### 2. CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
-The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical peak for single precision floating point numbers is 672 GFLOPs (one cpu)). BLIS was configured with OpenMP and SandyBridge kernel. The following script was used to run experiments:
-
-  ```shell
+ ```shell
  export OMP_NUM_THREADS=15
  export BLIS_JC_NT=3
  export BLIS_IC_NT=5
@@ -93,12 +84,11 @@ The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical 
  numactl --cpunodebind=2 --membind=2 ./eigen_blis
  numactl --cpunodebind=2 --membind=2 ./eigen
  ```
- The following chart depicts achieved GFLOPs for different matrix dimensions:
  
 ![sgemm E7-4890 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
 
-##### 3. CPU: E7-8890 v3 @ 2.5 (Haswell), GCC: 4.8.2, OS: Red Hat 7.0
-The machine is a server with 4 Intel's E7-8890 v3 @ 2.5 processors (theoretical peak for single precision floating point numbers is 1440 GFLOPs (one cpu)). BLIS was configured with OpenMP and Haswell kernel. The following script was used to run experiments:
+ 3. 4-CPU server: 18-core E7-8890 v3 @ 2.5 (Haswell, theorethical peak is 1440 GFLOPs for single precision numbers), GCC: 4.8.2, OS: Red Hat 7.0, BLIS configured with Haswell kernel.
+
   ```shell
  export OMP_NUM_THREADS=18
  export BLIS_JC_NT=3
@@ -107,7 +97,6 @@ The machine is a server with 4 Intel's E7-8890 v3 @ 2.5 processors (theoretical 
  numactl --cpunodebind=2 --membind=2 ./eigen_blis
  numactl --cpunodebind=2 --membind=2 ./eigen
  ```
- The following chart depicts achieved GFLOPs for different matrix dimensions:
  
 ![sgemm E7-8890 v3](https://docs.google.com/uc?id=0B9MJrpMhxr32NkF3bkgtT3NTMVU)
 
