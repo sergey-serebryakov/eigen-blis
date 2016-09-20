@@ -61,7 +61,8 @@ If you run it on multi-CPU server, do not forget to bind the executable to one c
 ### Experimental results
 
 In this section I provide several results I got on three different servers (see TODO section in the end for possible comments to these resutls). The servers were basically a multi-CPU machine. In all experiments BLIS is version 0.1.8.
- 1. 2-CPU server: 10-core E5-2660 v2 @ 2.2 (Ivy Bridge, theorethical peak is 352 GFLOPs for single precision numbers), GCC: 5.2.0, OS: Ubuntu 14.04, BLIS configured with Sandy Bridge kernel.
+
+#### 2-CPU server: 10-core E5-2660 v2 @ 2.2 (Ivy Bridge, theorethical peak is 352 GFLOPs for single precision numbers), GCC: 5.2.0, OS: Ubuntu 14.04, BLIS configured with Sandy Bridge kernel.
  
    ```shell
  export OMP_NUM_THREADS=10
@@ -74,7 +75,7 @@ In this section I provide several results I got on three different servers (see 
  
 ![sgemm E5-2660 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32di11TzJsdzFoZzQ)
 
- 2. 4-CPU server: 15-core E7-4890 v2 @ 2.8 (Ivy Bridge, theorethical peak is 672 GFLOPs for single precision numbers), GCC: 4.8.5, OS: Red Hat 7.2, BLIS configured with Sandy Bridge kernel.
+#### 4-CPU server: 15-core E7-4890 v2 @ 2.8 (Ivy Bridge, theorethical peak is 672 GFLOPs for single precision numbers), GCC: 4.8.5, OS: Red Hat 7.2, BLIS configured with Sandy Bridge kernel.
  
  ```shell
  export OMP_NUM_THREADS=15
@@ -87,7 +88,7 @@ In this section I provide several results I got on three different servers (see 
  
 ![sgemm E7-4890 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
 
- 3. 4-CPU server: 18-core E7-8890 v3 @ 2.5 (Haswell, theorethical peak is 1440 GFLOPs for single precision numbers), GCC: 4.8.2, OS: Red Hat 7.0, BLIS configured with Haswell kernel.
+#### 4-CPU server: 18-core E7-8890 v3 @ 2.5 (Haswell, theorethical peak is 1440 GFLOPs for single precision numbers), GCC: 4.8.2, OS: Red Hat 7.0, BLIS configured with Haswell kernel.
 
   ```shell
  export OMP_NUM_THREADS=18
