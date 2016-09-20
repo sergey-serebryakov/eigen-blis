@@ -104,4 +104,4 @@ The machine is a server with 4 Intel's E7-8890 v3 @ 2.5 processors (theoretical 
 ![sgemm E7-8890 v3](https://docs.google.com/uc?id=0B9MJrpMhxr32NkF3bkgtT3NTMVU)
 
 ### TODO
-Should AVX (FMA) be explicitly specified with GCC?
+Should AVX (FMA) be explicitly specified with GCC (see [here](http://eigen.tuxfamily.org/index.php?title=3.3))?
