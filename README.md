@@ -60,8 +60,23 @@ If you run examples on multi-CPU server, do not forget to bind the app to one cp
  
 ### Experimental results
  
-##### 1. CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
-The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical peak for single precision floating point numbers is 672 GFLOPs). BLIS was configured with OpenMP and SandyBridge kernel. The following script was used to run experiments:
+##### 1. CPU: E5-2660 v2 @ 2.2 (Ivy Bridge), GCC: 5.2.0, OS: Ubuntu 14.04
+The machine is a server with 2 Intel's E5-2660 v2 @ 2.2 processors (theoretical peak for single precision floating point numbers is 352 GFLOPs (one cpu)). BLIS was configured with OpenMP and SandyBridge kernel. The following script was used to run experiments:
+  ```shell
+ export OMP_NUM_THREADS=10
+ export BLIS_JC_NT=2
+ export BLIS_IC_NT=5
+ numactl --cpunodebind=1 --membind=1 ./blis
+ numactl --cpunodebind=1 --membind=1 ./eigen_blis
+ numactl --cpunodebind=1 --membind=1 ./eigen
+ ```
+ The following chart depicts achieved GFLOPs for different matrix dimensions:
+ 
+![sgemm E5-2660 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32di11TzJsdzFoZzQ)
+
+ 
+##### 2. CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
+The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical peak for single precision floating point numbers is 672 GFLOPs (one cpu)). BLIS was configured with OpenMP and SandyBridge kernel. The following script was used to run experiments:
   ```shell
  export OMP_NUM_THREADS=15
  export BLIS_JC_NT=3
