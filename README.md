@@ -88,3 +88,20 @@ The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical 
  The following chart depicts achieved GFLOPs for different matrix dimensions:
  
 ![sgemm E7-4890 v2](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
+
+##### 3. CPU: E7-8890 v3 @ 2.5 (Haswell), GCC: 4.8.2, OS: Red Hat 7.0
+The machine is a server with 4 Intel's E7-8890 v3 @ 2.5 processors (theoretical peak for single precision floating point numbers is 1440 GFLOPs (one cpu)). BLIS was configured with OpenMP and Haswell kernel. The following script was used to run experiments:
+  ```shell
+ export OMP_NUM_THREADS=18
+ export BLIS_JC_NT=3
+ export BLIS_IC_NT=6
+ numactl --cpunodebind=2 --membind=2 ./blis
+ numactl --cpunodebind=2 --membind=2 ./eigen_blis
+ numactl --cpunodebind=2 --membind=2 ./eigen
+ ```
+ The following chart depicts achieved GFLOPs for different matrix dimensions:
+ 
+![sgemm E7-8890 v3](https://docs.google.com/uc?id=0B9MJrpMhxr32NkF3bkgtT3NTMVU)
+
+### TODO
+Should AVX (FMA) be explicitly specified with GCC?
