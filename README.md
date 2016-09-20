@@ -66,9 +66,9 @@ The machine is a server with 4 Intel's E7-4890 v2 @ 2.8 processors (theoretical 
  export OMP_NUM_THREADS=15
  export BLIS_JC_NT=3
  export BLIS_IC_NT=5
- nuamctl --cpunodebind=2 --membind=2 ./blis
- nuamctl --cpunodebind=2 --membind=2 ./eigen_blis
- nuamctl --cpunodebind=2 --membind=2 ./eigen
+ numactl --cpunodebind=2 --membind=2 ./blis
+ numactl --cpunodebind=2 --membind=2 ./eigen_blis
+ numactl --cpunodebind=2 --membind=2 ./eigen
  ```
  The following chart depicts achieved GFLOPs for different matrix dimensions:
  
