@@ -61,9 +61,9 @@ If you run it on multi-CPU server, do not forget to bind the executable to one c
 ### Experimental results
 
 In this section I provide several results I got on three different servers (see TODO section in the end for possible comments to these resutls). The servers were basically a multi-CPU machine with following CPUs and environments:
- 1 CPU: E5-2660 v2 @ 2.2 (Ivy Bridge), GCC: 5.2.0, OS: Ubuntu 14.04 (2-CPU machine)
- 2 CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2 (4-CPU machine)
- 3 CPU: E7-8890 v3 @ 2.5 (Haswell), GCC: 4.8.2, OS: Red Hat 7.0 (4-CPU machine)
+ 1. CPU: E5-2660 v2 @ 2.2 (Ivy Bridge), GCC: 5.2.0, OS: Ubuntu 14.04 (2-CPU machine)
+ 2. CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2 (4-CPU machine)
+ 3. CPU: E7-8890 v3 @ 2.5 (Haswell), GCC: 4.8.2, OS: Red Hat 7.0 (4-CPU machine)
 
 ##### 1. CPU: E5-2660 v2 @ 2.2 (Ivy Bridge), GCC: 5.2.0, OS: Ubuntu 14.04
 The machine is a server with 2 Intel's E5-2660 v2 @ 2.2 processors (theoretical peak for single precision floating point numbers is 352 GFLOPs (one cpu)). BLIS was configured with OpenMP and SandyBridge kernel. The following script was used to run experiments:
