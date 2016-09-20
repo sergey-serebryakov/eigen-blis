@@ -62,4 +62,4 @@ If you run examples on multi-CPU server, do not forget to bind the app to one cp
 ### Experimental results
  
 ##### CPU: E7-4890 v2 @ 2.8 (Ivy Bridge), GCC: 4.8.5, OS: Red Hat 7.2
-![sgemm](https://drive.google.com/file/d/0B9MJrpMhxr32MVZ4WXVOaGNUUVU/view?usp=sharing)
+![sgemm](https://docs.google.com/uc?id=0B9MJrpMhxr32MVZ4WXVOaGNUUVU)
