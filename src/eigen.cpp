@@ -10,8 +10,8 @@
 int main(int argc, char** argv) {
   const int num_runs = 10;
   std::srand(std::time(0));
-  
+
   benchmark_eigen(num_runs);
-  
+
   return EXIT_SUCCESS;
 }

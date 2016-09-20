@@ -31,9 +31,9 @@ int main(int argc, char** argv) {
     }
     const double gemm_time   = static_cast<double>(get_time() - start_time) * 1.0e-6 / num_runs;
     const double gemm_gflops = 2.0d * dim * dim * dim / (1e9 * gemm_time);
-    
+
     std::cout << dim << "\t\t" << gemm_gflops << std::endl;
   }
-  
+
   return EXIT_SUCCESS;
 }

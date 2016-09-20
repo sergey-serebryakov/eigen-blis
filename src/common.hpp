@@ -7,7 +7,7 @@
 
 #define real_t    float
 #define gemm_func cblas_sgemm
-#define eigen_mat Eigen::MatrixXf
+#define eigen_mat Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor | Eigen::AutoAlign>
 
 unsigned long long get_time() {
   struct timeval now;
@@ -28,7 +28,7 @@ void benchmark_eigen(const int num_runs) {
     }
     const double gemm_time   = static_cast<double>(get_time() - start_time) * 1.0e-6 / num_runs;
     const double gemm_gflops = 2.0d * dim * dim * dim / (1e9 * gemm_time);
-    
+
     std::cout << dim << "\t\t" << gemm_gflops << std::endl;
   }
 }
