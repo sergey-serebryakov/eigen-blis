@@ -50,7 +50,7 @@ There are multiple ways how BLIS can be configured in [multithreading mode](http
  export BLIS_IC_NT=5
  ```
  
-Once it is done, go to buid directory and run binaries. The programm will iterate over matrix dimensions in the range 200-100000 with step 200 and will multiply squared matrices several times to measure the average time and achieved GFLOPs. The experiment is written in such a way that a matrix multiplication expression will be translated by Eigen to exactly one sgemm call (C = A * B + C) (see Eigen [documentation](http://eigen.tuxfamily.org/dox/TopicWritingEfficientProductExpression.html) how to write efficient matrix expressions). The output is a two column table with first column being dimension and the second column being average GFLOPs.
+Once it is done, go to buid directory and run binaries. The programm will iterate over matrix dimensions in the range 200-10000 with step 200 and will multiply squared matrices several times to measure the average time and achieved GFLOPs. The experiment is written in such a way that a matrix multiplication expression will be translated by Eigen to exactly one sgemm call (C = A * B + C) (see Eigen [documentation](http://eigen.tuxfamily.org/dox/TopicWritingEfficientProductExpression.html) how to write efficient matrix expressions). The output is a two column table with first column being dimension and the second column being average GFLOPs.
  
 ### Experimental results
 
